@@ -5,34 +5,40 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Fri Mar  3 14:09:44 2017 anatole zeyen
-** Last update Fri Mar  3 14:54:43 2017 anatole zeyen
+** Last update Fri Mar  3 15:13:41 2017 anatole zeyen
 */
 
 #include <unistd.h>
 
+int	len(char *str)
+{
+  int x = 0;
+  while (str[x])
+    x++;
+  return (x);
+}
+
 char	**move_left(char **tetris, char **tetrisbis)
 {
-  int	x;
-  int	y;
+  int	i;
+  int	j;
   int	ln;
 
-  x = 0;
-  y = 0;
-  while (tetris[x])
+  i = 0;
+  j = 0;
+  while (tetris[i])
     {
-      ln = len(tetris[x]) - x;
-      while (tetris[x][y])
+      while (tetris[i][j])
 	{
-	  tetrisbis[x + y][ln];
-	  printf("->[%d][%d]\n", x + y, ln);
-	  y++;
+	  //tetrisbis[j][len(tetris[i]) - i] = tetris[i][j];
+	  printf("->[%d][%d]\n",j, len(tetris[i]) - i);
+	  j++;
 	}
       printf("\n");
-      //tetrisbis[x + y][ln] = '\0';
-      y = 0;
-      x++;
+      j = 0;
+      i++;
     }
-  tetrisbis[x] = '\0';
+  tetrisbis[i] = '\0';
   return (tetrisbis);
 }
 
@@ -74,7 +80,7 @@ int	main(int ac, char **av)
   bis = rotate_left(tetris);
   while (bis[x])
     {
-      my_putstr(bis[x]);
+      printf("%s", bis[x]);
       x++;
     }
 }

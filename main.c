@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Fri Mar  3 13:58:45 2017 anatole zeyen
+** Last update Fri Mar  3 15:59:34 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -55,27 +55,37 @@ int	place_game(int sizex, int sizey)
   hline(0, sizey * 2);
 }
 
-int     main()
+char	**open_ascii(char *ascii)
 {
-  int   event;
   char  fuffer[10000];
   int   datboi;
   int   fd;
-  char	**ascii;
 
-  initscr();
-  keypad(stdscr,TRUE);
-  curs_set(FALSE);
   fd = open("ascii_tetris", O_RDONLY, 0666);
   if ((datboi = read(fd, fuffer, 9999)) == -1)
     return (84);
   fuffer[datboi] = '\0';
   ascii = my_str_to_wordtab(fuffer, '\n');
   close(fd);
+  return (ascii);
+}
+
+int     main()
+{
+  int   event;
+  char	**map;
+  char	**ascii;
+
+  initscr();
+  keypad(stdscr,TRUE);
+  curs_set(FALSE);
+  ascii = open_ascii(ascii);
+  map = create_map(map, 20, 10 * 2); // coords pareil
   while (1)
     {
       print_map(ascii, 0, 0);
-      place_game(20, 10); // ENVOYER LES COORDS ICI
+      place_map(map, 20, 10); // encore
+      place_game(20 + 1, 10 + 1); // ENVOYER LES COORDS ICI
       refresh();
       clear();
     }
