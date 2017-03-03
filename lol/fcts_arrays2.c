@@ -5,7 +5,7 @@
 ** Login   <antoine.le-du@epitech.eu>
 ** 
 ** Started on  Wed Mar  1 16:10:01 2017 Antoine
-** Last update Wed Mar  1 23:12:56 2017 Antoine
+** Last update Fri Mar  3 17:58:10 2017 anatole zeyen
 */
 
 #include <dirent.h>
@@ -69,7 +69,7 @@ void	swap_elem(char **index1, char **index2)
   *index2 = variable;
 }
 
-void    my_display_array(char **array, char *path)
+t_figure	*my_display_array(char **array, char *path, t_figure *figure)
 {
   int	x;
   int	y;
@@ -82,12 +82,15 @@ void    my_display_array(char **array, char *path)
   my_putstr("Tetriminos :  ");
   my_putnbr(y);
   my_putchar('\n');
+  if ((figure = malloc(sizeof(t_figure))) == NULL)
+    return (NULL);
   while (array[x])
     {
       str = my_strcat(path, array[x]);
-      prompt_one_file(str);
+      figure[x] = prompt_one_file(str, figure[x]);
       x = x + 1;
     }
+  return (figure);
 }
 
 char		**sort_d_name(char *str, char *av1)

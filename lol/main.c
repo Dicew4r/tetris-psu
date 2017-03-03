@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Mon Feb 20 13:50:25 2017 anatole zeyen
-** Last update Fri Mar  3 17:57:45 2017 Antoine
+** Last update Fri Mar  3 18:04:48 2017 anatole zeyen
 */
 
 #include <pwd.h>
@@ -21,7 +21,7 @@
 #include <sys/ioctl.h>
 #include "tetris.h"
 
-int	prompt_one_file(char *name)
+t_figure	prompt_one_file(char *name, t_figure figure)
 {
   int	fd;
   char	*fuffer;
@@ -32,20 +32,20 @@ int	prompt_one_file(char *name)
   tab = NULL;
   size = 100;
   if ((size = get_size(name, size)) == 0)
-    return (84);
+    return (figure);
   if ((fuffer = malloc(sizeof(char) * size)) == NULL)
-    return (84);
+    return (figure);
   if ((fd = open(name, O_RDONLY)) == - 1)
-    return (84);
+    return (figure);
   if ((datboi = read(fd, fuffer, size)) == 0)
-    return (84);
+    return (figure);
   fuffer[datboi] = '\0';
   close(fd);
   tab = my_str_to_wordtab(fuffer, '\n');
   fd = my_parsing(tab);
-  my_prompt_figure(tab, name, fd);
+  figure = my_prompt_figure(tab, name, fd, figure);
   free(fuffer);
-  return (0);
+  return (figure);
 }
 
 char	*my_strcat(char *path, char *name)
@@ -127,6 +127,7 @@ int		main(int ac, char **av)
   char		**list;
   int		size;
   struct termios new;
+  t_figure	*figure;
   char		c;
   t_struct	*infos;
 
@@ -154,7 +155,8 @@ int		main(int ac, char **av)
 	  return (0);
 	}
       list = sort_d_name("tetriminos", av[0]);
-      my_display_array(list, "tetriminos");
+      figure = NULL;
+      figure = my_display_array(list, "tetriminos", figure);
       my_putstr("Press any key to start Tetris\n");
     }
   else if (ac == 1)

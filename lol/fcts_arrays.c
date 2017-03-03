@@ -5,7 +5,7 @@
 ** Login   <antoine.le-du@epitech.eu>
 ** 
 ** Started on  Wed Mar  1 16:07:10 2017 Antoine
-** Last update Wed Mar  1 23:12:14 2017 Antoine
+** Last update Fri Mar  3 18:13:21 2017 anatole zeyen
 */
 
 #include <stdlib.h>
@@ -24,7 +24,27 @@ static void	my_print_sizecolor(char	**first_line)
   my_putstr(" :\n");
 }
 
-void	my_prompt_figure(char **tab, char *name, int error)
+t_figure	fill_figure(char **tab, int max, t_figure figure)
+{
+  int	x;
+
+  x = 1;
+  while (tab[x] && x <= max)
+    x++;
+  if ((figure.tetris = malloc(sizeof(char *) * x + 1)) == NULL)
+    return (figure);
+  x = 1;
+  while (tab[x] && x <= max)
+    {
+      figure.tetris[x - 1] = my_strdup(tab[x]);
+      x++;
+    }
+  figure.tetris[x - 1] = NULL;
+  figure.height = max;
+  return (figure);
+}
+
+t_figure	my_prompt_figure(char **tab, char *name, int error, t_figure figure)
 {
   char	**first_line;
   int	x;
@@ -37,15 +57,17 @@ void	my_prompt_figure(char **tab, char *name, int error)
   if (error == 84)
     {
       my_putstr(" : Error\n");
-      return ;
+      return (figure);
     }
   my_print_sizecolor(first_line);
+  figure = fill_figure(tab, my_getnbr(first_line[1]), figure);
   while (tab[x] && x <= (my_getnbr(first_line[1])))
     {
       my_putstr(tab[x]);
       my_putchar('\n');
       x++;
     }
+  return (figure);
 }
 
 int	verif_figure(char **tab, int lines)
