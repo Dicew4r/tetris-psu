@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Fri Mar  3 15:59:34 2017 anatole zeyen
+** Last update Fri Mar  3 16:50:34 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -83,6 +83,7 @@ int     main()
   map = create_map(map, 20, 10 * 2); // coords pareil
   while (1)
     {
+      map = add_tetrimino(map, tetriminos)
       print_map(ascii, 0, 0);
       place_map(map, 20, 10); // encore
       place_game(20 + 1, 10 + 1); // ENVOYER LES COORDS ICI
