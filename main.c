@@ -5,11 +5,13 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Fri Mar  3 18:17:39 2017 anatole zeyen
+** Last update Fri Mar  3 19:17:17 2017 anatole zeyen
 */
 
 #include <fcntl.h>
+#include <unistd.h>
 #include <ncurses.h>
+#include "tetris.h"
 
 char    **print_map(char **map, int level, int y)
 {
@@ -53,9 +55,10 @@ int	place_game(int sizex, int sizey)
   hline(0, sizey * 2);
   mvprintw((LINES / 2) + (sizex / 2), (COLS / 2) - (sizey / 2), " ");
   hline(0, sizey * 2);
+  return (0);
 }
 
-char	**open_ascii(char *ascii)
+char	**open_ascii(char **ascii)
 {
   char  fuffer[10000];
   int   datboi;
@@ -63,22 +66,23 @@ char	**open_ascii(char *ascii)
 
   fd = open("ascii_tetris", O_RDONLY, 0666);
   if ((datboi = read(fd, fuffer, 9999)) == -1)
-    return (84);
+    return (NULL);
   fuffer[datboi] = '\0';
   ascii = my_str_to_wordtab(fuffer, '\n');
   close(fd);
   return (ascii);
 }
 
-int     main()
+int     main(int ac, char **av)
 {
-  int   event;
+  int	event;
   char	**map;
   char	**ascii;
   t_figure	*figure;
   int	x;
 
   x = 0;
+  debugmain(ac, av, figure);
   initscr();
   keypad(stdscr,TRUE);
   curs_set(FALSE);
@@ -86,7 +90,7 @@ int     main()
   map = create_map(map, 20, 10 * 2); // coords pareil
   while (1)
     {
-      map = add_tetrimino(map, figure[x]);
+      // map = add_tetrimino(map, figure[x], 20, 10);
       x++;
       print_map(ascii, 0, 0);
       place_map(map, 20, 10); // encore

@@ -5,10 +5,12 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Fri Mar  3 16:01:02 2017 anatole zeyen
-** Last update Fri Mar  3 16:24:21 2017 anatole zeyen
+** Last update Fri Mar  3 19:09:14 2017 anatole zeyen
 */
 
 #include <unistd.h>
+#include <stdlib.h>
+#include "tetris.h"
 
 char	**recreate_tetrimino(char **tetrimino, char **figure, int x, int y)
 {
@@ -63,7 +65,7 @@ char	**transform_tetrimino(char **tetrimino)
   return (figure);
 }
 
-int	main()
+/*int	main()
 {
   char	**tab;
   int	i;
@@ -81,4 +83,4 @@ int	main()
   tab[4] = NULL;
   tab = transform_tetrimino(tab);
   printf("%s\n%s\n%s\n%s\n", tab[0], tab[1], tab[2], tab[3]);
-}
+  }*/

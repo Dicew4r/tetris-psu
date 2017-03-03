@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Mon Feb 20 13:50:25 2017 anatole zeyen
-** Last update Fri Mar  3 18:22:11 2017 anatole zeyen
+** Last update Fri Mar  3 18:24:57 2017 anatole zeyen
 */
 
 #include <pwd.h>
@@ -121,12 +121,11 @@ static void	my_disp_help(char *av)
   my_putstr("\n   -d --debug\t\tDebug mode (def:  false)\n");
 }
 
-int		main(int ac, char **av)
+int		debugmain(int ac, char **av, t_figure *figure)
 {
   char		**list;
   int		size;
   struct termios new;
-  t_figure	*figure;
   char		c;
   t_struct	*infos;
 
