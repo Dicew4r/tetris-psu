@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Mon Feb 27 10:20:49 2017 anatole zeyen
-** Last update Fri Mar  3 18:08:35 2017 Antoine
+** Last update Mon Mar  6 15:43:39 2017 anatole zeyen
 */
 
 #include <stdlib.h>
@@ -60,16 +60,14 @@ void	print_key_debug(t_struct *infos)
   convert_space(infos->kp);
 }
 
-int		debug(char **av)
+int		debug(char **av, t_struct *infos, t_figure *figure)
 {
-  t_struct	*infos;
+  char	**list;
 
-  if ((infos = malloc(sizeof(t_struct))) == NULL)
-    exit(84);
+  infos = init_infos(infos, av);
+  verif_param(infos);
   if (is_d_flag(av) == 1)
     return (1);
-  infos = init_infos(infos, av);
-  //verif_param(infos);
   if (infos->error == 84)
     {
       my_putstr("wrong parameters\n");
@@ -85,5 +83,8 @@ int		debug(char **av)
   my_putchar('*');
   my_putnbr(infos->sizey);
   my_putchar('\n');
+  list = sort_d_name("tetriminos", av[0]);
+  figure = my_display_array(list, "tetriminos", figure);
+  printf("%s\n", figure[3].tetris[2]);
   return (0);
 }

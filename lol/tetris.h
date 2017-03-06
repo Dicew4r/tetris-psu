@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:01:57 2017 anatole zeyen
-** Last update Fri Mar  3 18:04:34 2017 anatole zeyen
+** Last update Mon Mar  6 15:27:08 2017 anatole zeyen
 */
 
 #ifndef READ_SIZE
@@ -42,7 +42,8 @@ typedef struct		s_struct
   int			error;
 }			t_struct;
 
-int		debug(char **av);
+void	verif_param(t_struct *infos);
+int		debug(char **av, t_struct *infos, t_figure *figure);
 char		*my_strcat(char *path, char *name);
 char		*recreate_name(char *name);
 int		is_nbr(char *str);

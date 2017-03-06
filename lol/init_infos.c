@@ -5,7 +5,7 @@
 ** Login   <antoine.le-du@epitech.eu>
 ** 
 ** Started on  Wed Mar  1 16:44:49 2017 Antoine
-** Last update Fri Mar  3 18:09:05 2017 Antoine
+** Last update Fri Mar  3 20:41:31 2017 Antoine
 */
 
 #include <stdlib.h>
@@ -55,7 +55,7 @@ static void	fullfill_infos(t_struct *infos, t_opt *args, int nb)
   int	i;
 
   i = 0;
-  while (i < nb)
+  while (i <= nb)
     {
       if (my_strcmp(args[i].name, "kr") == 0
 	  || my_strcmp(args[i].name, "key-right") == 0)

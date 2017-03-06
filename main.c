@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Mon Mar  6 12:06:39 2017 anatole zeyen
+** Last update Mon Mar  6 15:49:27 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -76,26 +76,41 @@ char	**open_ascii(char **ascii)
   return (ascii);
 }
 
-int     main(int ac, char **av)
+int		main(int ac, char **av)
 {
-  char	**map;
-  char	**ascii;
+  char		**map;
+  char		**ascii;
+  t_struct	*infos;
   t_figure	*figure;
-  int	x;
-  int	level;
+  int		x;
+  int		level;
 
   x = 0;
   level = 1;
   figure = NULL;
   map = NULL;
   ascii = NULL;
-  figure = malloc(sizeof(t_figure));
-  debugmain(ac, av, figure);
+  if (ac >= 2)
+    {
+      while (av[++x])
+	if (my_strcmp(av[x], "--help") == 0)
+	  {
+	    my_disp_help(av[0]);
+	    exit(0);
+	  }
+      x = 0;
+    }
+  if ((figure = malloc(sizeof(t_figure))) == NULL)
+    return (84);
+  if ((infos = malloc(sizeof(t_struct))) == NULL)
+    return (84);
+  infos = init_infos(infos, av);
+  infos = debugmain(ac, av, figure, infos);
   initscr();
   keypad(stdscr,TRUE);
   curs_set(FALSE);
   ascii = open_ascii(ascii);
-  map = create_map(map, 20, 10 * 2); // coords pareil
+  map = create_map(map, infos->sizex, infos->sizey * 2);
   while (1)
     {
       if (figure[x].tetris)
@@ -104,8 +119,8 @@ int     main(int ac, char **av)
       print_next_tetrimino(figure, x);
       map = fall_map(map);
       print_map(ascii, level, 0);
-      place_map(map, 20, 10); // encore
-      place_game(20 + 1, 10 + 1); // ENVOYER LES COORDS ICI
+      place_map(map, infos->sizex, infos->sizey);
+      place_game(infos->sizex + 1, infos->sizey + 1);
       refresh();
       clear();
       if (x == 6)

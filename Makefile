@@ -5,7 +5,7 @@
 ## Login   <anatole.zeyen@epitech.eu>
 ##
 ## Started on  Fri Oct 14 09:09:57 2016 Maxime Louet
-## Last update Mon Mar  6 09:46:38 2017 anatole zeyen
+## Last update Mon Mar  6 14:46:26 2017 anatole zeyen
 ##
 
 CFLAGS	=	-Wextra -Wall -g3
@@ -13,6 +13,7 @@ CFLAGS	=	-Wextra -Wall -g3
 SRCS	=	lol/main.c			\
 		lol/my_strlen.c		\
 		lol/new_str_to_wordtab.c	\
+		lol/verif_param.c		\
 		lol/my_strncpy.c		\
 		lol/tools.c			\
 		lol/my_strdup.c		\

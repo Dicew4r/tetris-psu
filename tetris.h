@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:01:57 2017 anatole zeyen
-** Last update Mon Mar  6 11:37:31 2017 anatole zeyen
+** Last update Mon Mar  6 14:53:14 2017 anatole zeyen
 */
 
 #ifndef READ_SIZE
@@ -42,7 +42,8 @@ typedef struct		s_struct
   int			error;
 }			t_struct;
 
-t_figure	*debugmain(int ac, char **av, t_figure *figure);
+void		verif_param(t_struct *infos);
+t_figure	*debugmain(int ac, char **av, t_figure *figure, t_struct *infos);
 char		**recreate_tetrimino(char **tetrimino, char **figure, int x, int y);
 char		**transform_tetrimino(char **tetrimino);
 int		add_tetrimino(char **map, t_figure figure, int var, int sizey);
