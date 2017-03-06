@@ -5,7 +5,7 @@
 ** Login   <antoine.le-du@epitech.eu>
 ** 
 ** Started on  Wed Mar  1 16:07:10 2017 Antoine
-** Last update Fri Mar  3 18:13:21 2017 anatole zeyen
+** Last update Mon Mar  6 09:57:59 2017 anatole zeyen
 */
 
 #include <stdlib.h>
@@ -56,6 +56,7 @@ t_figure	my_prompt_figure(char **tab, char *name, int error, t_figure figure)
   my_putstr(name);
   if (error == 84)
     {
+      figure.tetris = NULL;
       my_putstr(" : Error\n");
       return (figure);
     }

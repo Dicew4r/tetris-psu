@@ -5,7 +5,7 @@
 ** Login   <antoine.le-du@epitech.eu>
 ** 
 ** Started on  Wed Mar  1 16:10:01 2017 Antoine
-** Last update Fri Mar  3 17:58:10 2017 anatole zeyen
+** Last update Mon Mar  6 10:15:15 2017 anatole zeyen
 */
 
 #include <dirent.h>
@@ -82,8 +82,6 @@ t_figure	*my_display_array(char **array, char *path, t_figure *figure)
   my_putstr("Tetriminos :  ");
   my_putnbr(y);
   my_putchar('\n');
-  if ((figure = malloc(sizeof(t_figure))) == NULL)
-    return (NULL);
   while (array[x])
     {
       str = my_strcat(path, array[x]);

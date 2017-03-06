@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Fri Mar  3 19:35:54 2017 anatole zeyen
+** Last update Mon Mar  6 11:32:36 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -16,6 +16,7 @@
 char    **print_map(char **map, int level, int y)
 {
   int	x;
+
   x = 0;
   init();
   while (map[x])
@@ -75,13 +76,16 @@ char	**open_ascii(char **ascii)
 
 int     main(int ac, char **av)
 {
-  int	event;
   char	**map;
   char	**ascii;
   t_figure	*figure;
   int	x;
 
   x = 0;
+  figure = NULL;
+  map = NULL;
+  ascii = NULL;
+  figure = malloc(sizeof(t_figure));
   debugmain(ac, av, figure);
   initscr();
   keypad(stdscr,TRUE);
@@ -90,8 +94,10 @@ int     main(int ac, char **av)
   map = create_map(map, 20, 10 * 2); // coords pareil
   while (1)
     {
-      map = add_tetrimino(map, figure[x], 20, 10);
+      if (figure[x].tetris)
+	map = add_tetrimino(map, figure[x], 20, 10);
       x++;
+      map = fall_map(map);
       print_map(ascii, 0, 0);
       place_map(map, 20, 10); // encore
       place_game(20 + 1, 10 + 1); // ENVOYER LES COORDS ICI
@@ -99,7 +105,9 @@ int     main(int ac, char **av)
       clear();
       if (x == 6)
 	x = 0;
+      sleep(2);
     }
+  free(map);
   endwin();
   return (0);
 }

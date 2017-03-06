@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Mon Feb 20 13:50:25 2017 anatole zeyen
-** Last update Fri Mar  3 18:24:57 2017 anatole zeyen
+** Last update Mon Mar  6 10:14:46 2017 anatole zeyen
 */
 
 #include <pwd.h>
@@ -153,13 +153,9 @@ int		debugmain(int ac, char **av, t_figure *figure)
 	  return (0);
 	}
       list = sort_d_name("tetriminos", av[0]);
-      figure = NULL;
       figure = my_display_array(list, "tetriminos", figure);
-      my_putstr("Press any key to start Tetris\n");
     }
-  else if (ac == 1)
-    {
-    }
+  my_putstr("Press any key to start Tetris\n");
   ioctl(0, TCGETS, &new);
   new.c_lflag &= ~ICANON;
   new.c_lflag &= ~ECHO;

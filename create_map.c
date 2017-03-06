@@ -5,9 +5,10 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Fri Mar  3 15:29:05 2017 anatole zeyen
-** Last update Fri Mar  3 16:00:02 2017 anatole zeyen
+** Last update Mon Mar  6 10:06:41 2017 anatole zeyen
 */
 
+#include <stdlib.h>
 #include <ncurses.h>
 #include <unistd.h>
 
@@ -21,6 +22,7 @@ char	**place_map(char **map, int sizex, int sizey)
       mvprintw(LINES / 2 - (sizex / 2) + x, (COLS / 2 - sizey / 2) + 1, map[x]);
       x++;
     }
+  return (map);
 }
 
 char	**place_borders(char **map, int j, int y, int x)

@@ -5,10 +5,10 @@
 ## Login   <anatole.zeyen@epitech.eu>
 ##
 ## Started on  Fri Oct 14 09:09:57 2016 Maxime Louet
-## Last update Fri Mar  3 19:29:02 2017 anatole zeyen
+## Last update Mon Mar  6 09:46:38 2017 anatole zeyen
 ##
 
-#CFLAGS	=	-Wextra -Wall -Werror -g3
+CFLAGS	=	-Wextra -Wall -g3
 
 SRCS	=	lol/main.c			\
 		lol/my_strlen.c		\
