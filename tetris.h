@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:01:57 2017 anatole zeyen
-** Last update Fri Mar  3 19:28:27 2017 anatole zeyen
+** Last update Mon Mar  6 11:37:31 2017 anatole zeyen
 */
 
 #ifndef READ_SIZE
@@ -45,7 +45,7 @@ typedef struct		s_struct
 t_figure	*debugmain(int ac, char **av, t_figure *figure);
 char		**recreate_tetrimino(char **tetrimino, char **figure, int x, int y);
 char		**transform_tetrimino(char **tetrimino);
-char		**add_tetrimino(char **map, t_figure figure, int sizex, int sizey);
+int		add_tetrimino(char **map, t_figure figure, int var, int sizey);
 char		**place_map(char **map, int sizex, int sizey);
 char		**place_borders(char **map, int j, int y, int x);
 char		**create_map(char **map, int x, int y);

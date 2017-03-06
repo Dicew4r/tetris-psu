@@ -5,14 +5,14 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Fri Mar  3 18:36:37 2017 anatole zeyen
-** Last update Mon Mar  6 11:33:47 2017 anatole zeyen
+** Last update Mon Mar  6 11:38:27 2017 anatole zeyen
 */
 
 #include <stdlib.h>
 #include <ncurses.h>
 #include "tetris.h"
 
-char	**add_tetrimino(char **map, t_figure figure, int sizex, int sizey)
+int	add_tetrimino(char **map, t_figure figure, int var, int sizey)
 {
   int	x;
   int	y;
@@ -24,7 +24,7 @@ char	**add_tetrimino(char **map, t_figure figure, int sizex, int sizey)
       while (figure.tetris[x][y])
 	{
 	  if (map[x + 1][sizey / 2 + y] == '*')
-	    return (map);
+	    return (var - 1);
 	  y++;
 	}
       y = 0;
@@ -42,7 +42,7 @@ char	**add_tetrimino(char **map, t_figure figure, int sizex, int sizey)
       y = 0;
       x++;
     }
-  return (map);
+  return (var);
 }
 
 char	**fall_map(char	**map)

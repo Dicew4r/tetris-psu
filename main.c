@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Mon Mar  6 11:32:36 2017 anatole zeyen
+** Last update Mon Mar  6 11:38:17 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -95,7 +95,7 @@ int     main(int ac, char **av)
   while (1)
     {
       if (figure[x].tetris)
-	map = add_tetrimino(map, figure[x], 20, 10);
+	x = add_tetrimino(map, figure[x], x, 10);
       x++;
       map = fall_map(map);
       print_map(ascii, 0, 0);
