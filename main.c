@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Mon Mar  6 11:54:17 2017 anatole zeyen
+** Last update Mon Mar  6 12:06:39 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -26,6 +26,8 @@ char    **print_map(char **map, int level, int y)
     }
   init4();
   mvprintw(4, COLS - 10, "level");
+  mvprintw(6, COLS - 5, " ");
+  addch(level + 48);
   init2();
   mvprintw(8, COLS - 15, "Next tetrimino");
   mvprintw(9, COLS - 15, " ");
@@ -80,8 +82,10 @@ int     main(int ac, char **av)
   char	**ascii;
   t_figure	*figure;
   int	x;
+  int	level;
 
   x = 0;
+  level = 1;
   figure = NULL;
   map = NULL;
   ascii = NULL;
@@ -99,14 +103,17 @@ int     main(int ac, char **av)
       x++;
       print_next_tetrimino(figure, x);
       map = fall_map(map);
-      print_map(ascii, 0, 0);
+      print_map(ascii, level, 0);
       place_map(map, 20, 10); // encore
       place_game(20 + 1, 10 + 1); // ENVOYER LES COORDS ICI
       refresh();
       clear();
       if (x == 6)
-	x = 0;
-      sleep(2);
+	{
+	  x = 0;
+	  level++;
+	}
+      sleep((1 / level) * 5);
     }
   free(map);
   endwin();
