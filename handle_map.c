@@ -5,12 +5,26 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Fri Mar  3 18:36:37 2017 anatole zeyen
-** Last update Mon Mar  6 11:38:27 2017 anatole zeyen
+** Last update Mon Mar  6 11:59:11 2017 anatole zeyen
 */
 
 #include <stdlib.h>
 #include <ncurses.h>
 #include "tetris.h"
+
+void	print_next_tetrimino(t_figure *figure, int x)
+{
+  int	y;
+
+  y = 0;
+  if (!figure[x].tetris)
+    x++;
+  while (figure[x].tetris[y])
+    {
+      mvprintw(10 + y, COLS - 11, figure[x].tetris[y]);
+      y++;
+    }
+}
 
 int	add_tetrimino(char **map, t_figure figure, int var, int sizey)
 {

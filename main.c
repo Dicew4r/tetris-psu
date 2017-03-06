@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Mon Mar  6 11:38:17 2017 anatole zeyen
+** Last update Mon Mar  6 11:54:17 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -97,6 +97,7 @@ int     main(int ac, char **av)
       if (figure[x].tetris)
 	x = add_tetrimino(map, figure[x], x, 10);
       x++;
+      print_next_tetrimino(figure, x);
       map = fall_map(map);
       print_map(ascii, 0, 0);
       place_map(map, 20, 10); // encore
