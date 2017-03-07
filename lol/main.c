@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Mon Feb 20 13:50:25 2017 anatole zeyen
-** Last update Mon Mar  6 15:49:14 2017 anatole zeyen
+** Last update Mon Mar  6 16:07:32 2017 anatole zeyen
 */
 
 #include <pwd.h>
@@ -139,15 +139,6 @@ t_struct		*debugmain(int ac, char **av,
     {
       my_putstr("wrong parameters\n");
       exit(84);
-    }
-  if (ac >= 2)
-    {
-      while (av[++size])
-	if (my_strcmp(av[size], "--help") == 0)
-	  {
-	    my_disp_help(av[0]);
-	    exit(0);
-	  }
     }
   my_putstr("Press any key to start Tetris\n");
   ioctl(0, TCGETS, &new);

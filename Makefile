@@ -5,7 +5,7 @@
 ## Login   <anatole.zeyen@epitech.eu>
 ##
 ## Started on  Fri Oct 14 09:09:57 2016 Maxime Louet
-## Last update Mon Mar  6 14:46:26 2017 anatole zeyen
+## Last update Mon Mar  6 17:37:56 2017 anatole zeyen
 ##
 
 CFLAGS	=	-Wextra -Wall -g3
@@ -27,6 +27,7 @@ SRCS	=	lol/main.c			\
 		transform_tetrimino.c		\
 		lol/check_double_arg.c	\
 		lol/init_infos.c		\
+		loop_main.c		\
 		main.c			\
 		handle_map.c		\
 		create_map.c		\
