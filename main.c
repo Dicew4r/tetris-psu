@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Mon Mar  6 17:51:50 2017 anatole zeyen
+** Last update Wed Mar  8 13:32:43 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -119,7 +119,6 @@ int		main(int ac, char **av)
     {
       x = tetrimino_actions_loop(map, figure, x);
       map = map_actions_loop(map, infos, ascii, infos->level);
-      //infos->level++;
       my_sleep(infos->level);
     }
   free(map);

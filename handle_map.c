@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Fri Mar  3 18:36:37 2017 anatole zeyen
-** Last update Tue Mar  7 09:35:27 2017 anatole zeyen
+** Last update Wed Mar  8 14:44:35 2017 anatole zeyen
 */
 
 #include <stdlib.h>
@@ -63,6 +63,7 @@ char	**fall_map(char	**map)
 {
   int	x;
   int	y;
+  int	aled;
 
   x = 0;
   y = 0;
@@ -84,11 +85,12 @@ char	**fall_map(char	**map)
       map[x] = my_strncpy(map[x], map[x - 1], len(map[x]));
       x--;
     }
+  y = 0;
   while (map[1][y])
     {
       if (map[1][y] == '*')
 	map[1][y] = ' ';
       y++;
     }
-  return (map);
+  return (1);
 }
