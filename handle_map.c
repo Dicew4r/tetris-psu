@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Fri Mar  3 18:36:37 2017 anatole zeyen
-** Last update Wed Mar  8 14:44:35 2017 anatole zeyen
+** Last update Thu Mar  9 10:43:13 2017 anatole zeyen
 */
 
 #include <stdlib.h>
@@ -15,82 +15,103 @@
 void	print_next_tetrimino(t_figure *figure, int x)
 {
   int	y;
+  int	a;
 
   y = 0;
-  if (!figure[x].tetris)
+  a = 0;
+  if (!figure[x].tetris[0])
     x++;
+  if (x > 6)
+    x = 1;
   while (figure[x].tetris[y])
     {
-      mvprintw(10 + y, COLS - 11, figure[x].tetris[y]);
+      move(10 + y, COLS - 11);
+      while (figure[x].tetris[y][a])
+	{
+	  if (figure[x].tetris[y][a] == '*')
+	    addch(figure[x].tetris[y][a]);
+	  a++;
+	}
+      a = 0;
       y++;
     }
 }
 
-int	add_tetrimino(char **map, t_figure figure, int var, int sizey)
+int	figure_blocked(t_figure figure, char **map, int y, int x)
 {
-  int	x;
-  int	y;
+  int	a;
+  int	b;
+  int	save;
 
-  x = 0;
-  y = 0;
-  while (figure.tetris[x])
+  a = 0;
+  while (figure.tetris[a])
+    a++;
+  --a;
+  if (a < 0 || !figure.tetris[a])
+    return (0);
+  b = 0;
+  while (figure.tetris[a][b])
     {
-      while (figure.tetris[x][y])
-	{
-	  if (map[x + 1][sizey / 2 + y] == '*')
-	    return (var - 1);
-	  y++;
-	}
-      y = 0;
-      x++;
-    }
-  x = 0;
-  y = 0;
-  while (figure.tetris[x])
-    {
-      while (figure.tetris[x][y])
-	{
-	  map[x + 1][sizey / 2 + y] = figure.tetris[x][y];
-	  y++;
-	}
-      y = 0;
-      x++;
-    }
-  return (var);
-}
-
-char	**fall_map(char	**map)
-{
-  int	x;
-  int	y;
-  int	aled;
-
-  x = 0;
-  y = 0;
-  while (map[x])
-    x++;
-  x = x - 3;
-  while (map[x][y])
-    {
-      if (map[x][y] == '*')
-	{
-	  x--;
-	  y = 0;
-	}
-      y++;
-    }
-  y = 0;
-  while (x > 1)
-    {
-      map[x] = my_strncpy(map[x], map[x - 1], len(map[x]));
-      x--;
-    }
-  y = 0;
-  while (map[1][y])
-    {
-      if (map[1][y] == '*')
-	map[1][y] = ' ';
-      y++;
+      save = a;
+      while (figure.tetris[a][b] != '*' && figure.tetris[a][b])
+	a = a - 1;
+      if (map[x + a + 1][y + b] != ' ')
+	return (0);
+      a = save;
+      b++;
     }
   return (1);
+}
+
+void	print_figure(t_figure figure, int x, int y, t_struct *info)
+{
+  int	k;
+
+  k = 0;
+  while (figure.tetris[k])
+    {
+      mvprintw(LINES / 2 - (info->sizex / 2) + k + y, (COLS / 2 - info->sizey / 2) + x + 1, figure.tetris[k]);
+      k++;
+    }
+}
+
+void	add_figure(t_figure figure, char **map, int x, int y)
+{
+  int	a;
+  int	b;
+
+  a = 0;
+  b = 0;
+  while (figure.tetris[a])
+    {
+      while (figure.tetris[a][b])
+	{
+	  if (figure.tetris[a][b] == '*')
+	    map[y + a][x + b] = figure.tetris[a][b];
+	  b++;
+	}
+      b = 0;
+      a++;
+    }
+}
+
+void	verif_loose(char **map)
+{
+  int	x;
+
+  x = 0;
+  while (map[1][x])
+    {
+      if (map[1][x] == '*')
+	{
+	  clear();
+	  mvprintw(LINES / 2, COLS / 2, "Defeat");
+	  refresh();
+	  sleep(2);
+	  endwin();
+	  free(map);
+	  exit(0);
+	}
+      x++;
+    }
 }

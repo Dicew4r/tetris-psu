@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Tue Feb 21 09:55:59 2017 anatole zeyen
-** Last update Thu Feb 23 11:51:08 2017 anatole zeyen
+** Last update Wed Mar  8 16:55:42 2017 anatole zeyen
 */
 
 #include <stdlib.h>
@@ -20,6 +20,7 @@ char	*recreate_name(char *name)
 
   y = 0;
   x = 1;
+  str = NULL;
   while (name[x] != '.' && name[x])
     x++;
   if ((str = malloc(sizeof(char) * x + 1)) == NULL)

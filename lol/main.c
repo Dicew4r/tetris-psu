@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Mon Feb 20 13:50:25 2017 anatole zeyen
-** Last update Mon Mar  6 16:07:32 2017 anatole zeyen
+** Last update Wed Mar  8 15:01:32 2017 anatole zeyen
 */
 
 #include <pwd.h>
@@ -124,7 +124,6 @@ void	my_disp_help(char *av)
 t_struct		*debugmain(int ac, char **av,
 				   t_figure *figure, t_struct *infos)
 {
-  char		**list;
   int		size;
   struct termios new;
   char		c;

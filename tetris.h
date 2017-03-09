@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:01:57 2017 anatole zeyen
-** Last update Mon Mar  6 17:37:10 2017 anatole zeyen
+** Last update Wed Mar  8 17:12:21 2017 anatole zeyen
 */
 
 #ifndef READ_SIZE
@@ -42,13 +42,19 @@ typedef struct		s_struct
   int			error;
 }			t_struct;
 
-int		tetrimino_actions_loop(char **map, t_figure *figure, int x);
-char		**map_actions_loop(char **map, t_struct *infos, char **ascii, int level);
+void		my_disp_help(char *av);
+t_figure	*init_fig_check_help(t_figure *figure, int ac, char **av);
+t_figure	*recieve_tetri_init_ncurse(t_figure *figure, char **av);
+char		*my_strncpy(char *dest, char *src, int n);
+int		tetrimino_actions_loop(char **map, t_figure *figure, int x, t_struct *info);
+char		**map_actions_loop(char **map, t_struct *infos, char **ascii);
 t_figure	*init_struct_check_help(t_figure *figure, t_struct *infos,
 					int ac, char **av);
 void		verif_param(t_struct *infos);
 t_struct	*debugmain(int ac, char **av, t_figure *figure, t_struct *infos);
 char		**recreate_tetrimino(char **tetrimino, char **figure, int x, int y);
+t_struct	*prep_infos(t_struct *infos, t_figure *figure,
+			    int ac, char **av);
 char		**transform_tetrimino(char **tetrimino);
 int		add_tetrimino(char **map, t_figure figure, int var, int sizey);
 char		**place_map(char **map, int sizex, int sizey);

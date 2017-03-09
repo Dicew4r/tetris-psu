@@ -5,7 +5,7 @@
 ** Login   <anatole.zeyen@epitech.net>
 **
 ** Started on  Wed Mar  1 15:41:48 2017 anatole zeyen
-** Last update Wed Mar  8 13:32:43 2017 anatole zeyen
+** Last update Thu Mar  9 10:44:00 2017 anatole zeyen
 */
 
 #include <fcntl.h>
@@ -44,7 +44,12 @@ char    **print_map(char **map, int level, int y)
     {
       clear();
       init4();
-      mvprintw(LINES / 2 - (1 / 2), COLS / 2 - 12, "please resize the window");
+      while (LINES < 40 || COLS < 80)
+	{
+	  clear();
+	  mvprintw(LINES / 2 - (1 / 2), COLS / 2 - 12, "please resize the window");
+	  refresh();
+	}
     }
   return (map);
 }
@@ -57,7 +62,7 @@ int	place_game(int sizex, int sizey)
   vline(0, sizex - 1);
   mvprintw((LINES / 2) - (sizex / 2), (COLS / 2) - (sizey / 2), " ");
   hline(0, sizey * 2);
-  mvprintw((LINES / 2) + (sizex / 2), (COLS / 2) - (sizey / 2), " ");
+  mvprintw((LINES / 2) + (sizex / 2) + 1, (COLS / 2) - (sizey / 2), " ");
   hline(0, sizey * 2);
   return (0);
 }
@@ -77,8 +82,7 @@ char	**open_ascii(char **ascii)
   return (ascii);
 }
 
-t_figure	*init_fig_check_help(t_figure *figure, t_struct *infos,
-			       int ac, char **av)
+t_figure	*init_fig_check_help(t_figure *figure, int ac, char **av)
 {
   int	x;
 
@@ -110,16 +114,16 @@ int		main(int ac, char **av)
   infos = NULL;
   map = NULL;
   ascii = NULL;
-  figure = init_fig_check_help(figure, infos, ac, av);
+  figure = init_fig_check_help(figure, ac, av);
   infos = prep_infos(infos, figure, ac, av);
   figure = recieve_tetri_init_ncurse(figure, av);
   ascii = open_ascii(ascii);
   map = create_map(map, infos->sizex, infos->sizey * 2);
   while (1)
     {
-      x = tetrimino_actions_loop(map, figure, x);
-      map = map_actions_loop(map, infos, ascii, infos->level);
-      my_sleep(infos->level);
+      // map = map_actions_loop(map, infos, ascii);
+      x = tetrimino_actions_loop(map, figure, x, infos);
+      // my_sleep(infos->level);
     }
   free(map);
   endwin();
